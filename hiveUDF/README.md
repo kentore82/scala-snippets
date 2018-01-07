@@ -9,5 +9,16 @@ beeline -u jdbc:hive2://<host>:10000/default -n username
 
 beeline> ADD JAR /tmp/hiveudf_2.11-0.1.jar;
 beeline> CREATE [TEMPORARY] FUNCTION strToUpper as 'no.sherpa.hive.udfs.strToUpperCase';
-beeline> SELECT strToUpper(strCol) as STRCol FROM mytable LIMIT 10;
+beeline> SELECT titanic.name AS name,strToUpper(titanic.name) AS nameupper FROM titanic LIMIT 5;
++-------------+-------------+--+
+|    name     |  nameupper  |
++-------------+-------------+--+
+| "Braund     | "BRAUND     |
+| "Cumings    | "CUMINGS    |
+| "Heikkinen  | "HEIKKINEN  |
+| "Futrelle   | "FUTRELLE   |
+| "Allen      | "ALLEN      |
++-------------+-------------+--+
+5 rows selected (1.579 seconds)
+ 
 ```
